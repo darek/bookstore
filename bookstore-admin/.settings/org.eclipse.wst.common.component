@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="bookstore-admin">
+        <wb-resource deploy-path="/" source-path="/war"/>
+        <property name="context-root" value="bookstore-admin"/>
+        <property name="java-output-path" value="/bookstore-admin/build/classes"/>
+    </wb-module>
+</project-modules>
