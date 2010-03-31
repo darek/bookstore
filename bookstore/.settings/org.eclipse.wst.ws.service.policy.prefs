@@ -1,3 +1,5 @@
-#Mon Feb 22 00:01:31 CET 2010
+#Thu Mar 25 00:04:50 CET 2010
 eclipse.preferences.version=1
 org.eclipse.wst.ws.service.policy.projectEnabled=false
+org.eclipse.wst.ws.service.policy.ui.servicepols.wsiprofilecomp.wsiap.default.value.key=org.eclipse.wst.sug.suggest
+org.eclipse.wst.ws.service.policy.ui.servicepols.wsiprofilecomp.wsissbp.default.value.key=org.eclipse.wst.sug.suggest

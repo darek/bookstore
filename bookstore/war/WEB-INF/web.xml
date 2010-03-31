@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		  xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
-		  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-		  					  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="b0ok" version="2.5">
-  
-  <display-name>bookstore</display-name>
-  <!-- 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+		  					  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="b0ok" version="2.5">
+
+	<display-name>bookstore</display-name>
+	<!-- 
   		wskazujemy lokalizacje plikow konfiguracyjnych
    -->
-  <context-param>
-  	<param-name>contextConfigLocation</param-name>
-  	<param-value>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
   		/WEB-INF/web-servlet.xml
   	</param-value>
-  </context-param>
-  
-      <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
-  
-  <!--  
-  	tworzymy servlet ktory obslugiwac bedzie nasze zapytania 
-  -->
-  <servlet>
-  	<servlet-name>web</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  </servlet>
-  
-  <!-- 
-  	ustalamy ze nasz servlet obslugiwac bedzie tylko zapytania konczace sie rozszerzeniem *.html
-   -->
-  <servlet-mapping>
-  	<servlet-name>web</servlet-name>
-  	<url-pattern>*.html</url-pattern>
-  </servlet-mapping>
-  
-  <!-- 
-  	ustalamy, jakie pliki beda ladowane gdy aplikacja dostanie zapyanie "/" (np. http://example.com/)
-   -->
-  <welcome-file-list>
-    <welcome-file>redirect.jsp</welcome-file>
-    <!-- 
-    	jesli nie ma pliku redirect.jsp zaladuj, under_construction.jsp 
-    -->
-    <welcome-file>under_construction.jsp</welcome-file>
-  </welcome-file-list>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--
+		tworzymy servlet ktory obslugiwac bedzie nasze zapytania
+	-->
+	<servlet>
+		<servlet-name>web</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+
+	<!--
+		ustalamy ze nasz servlet obslugiwac bedzie tylko zapytania konczace
+		sie rozszerzeniem *.html
+	-->
+	<servlet-mapping>
+		<servlet-name>web</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+
+	<!--
+		ustalamy, jakie pliki beda ladowane gdy aplikacja dostanie zapyanie
+		"/" (np. http://example.com/)
+	-->
+	<welcome-file-list>
+		<welcome-file>redirect.jsp</welcome-file>
+		<!--
+			jesli nie ma pliku redirect.jsp zaladuj, under_construction.jsp
+		-->
+		<welcome-file>under_construction.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
