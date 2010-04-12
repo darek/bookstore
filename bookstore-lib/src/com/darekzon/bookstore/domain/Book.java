@@ -1,5 +1,3 @@
-
-
 package com.darekzon.bookstore.domain;
 
 import java.util.Date;
@@ -9,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @author darek
- *
+ * 
  */
 @Entity
 public class Book {

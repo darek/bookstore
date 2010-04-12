@@ -37,6 +37,15 @@
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 
+	<!--  konfiguracja sitemesh -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.darekzon.bookstore.filter.Sitemesh</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<!--
 		ustalamy, jakie pliki beda ladowane gdy aplikacja dostanie zapyanie
 		"/" (np. http://example.com/)
