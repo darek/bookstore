@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 
  */
 @Entity
+@Table(name="book")
 public class Book {
 
 	@Id

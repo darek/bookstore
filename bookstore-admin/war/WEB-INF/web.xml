@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="WebApp_ID" version="2.5">
-	<display-name>bookstore-admin</display-name>
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+		  					  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="b0ok-admin" version="2.5">
+
+	<display-name>bookstore-admain</display-name>
+	<!-- 
+  		wskazujemy lokalizacje plikow konfiguracyjnych
+    -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		/WEB-INF/web-data.xml
+  		/WEB-INF/web-servlet.xml
+  		/WEB-INF/web-security.xml
+  	</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--
+		tworzymy servlet ktory obslugiwac bedzie nasze zapytania
+	-->
+	<servlet>
+		<servlet-name>web</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<!--
+		ustalamy ze nasz servlet obslugiwac bedzie tylko zapytania konczace
+		sie rozszerzeniem *.html
+	-->
+	<servlet-mapping>
+		<servlet-name>web</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<!--  konfiguracja sitemesh -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.darekzon.bookstore.filter.Sitemesh</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!--
+		ustalamy, jakie pliki beda ladowane gdy aplikacja dostanie zapyanie
+		"/" (np. http://example.com/)
+	-->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
+	<persistence-unit-ref>
+		<persistence-unit-ref-name>persistenceUnit</persistence-unit-ref-name>
+		<persistence-unit-name>bookstorePU</persistence-unit-name>
+	</persistence-unit-ref>
 </web-app>

@@ -51,7 +51,7 @@
 		"/" (np. http://example.com/)
 	-->
 	<welcome-file-list>
-		<welcome-file>redirect.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 		<!--
 			jesli nie ma pliku redirect.jsp zaladuj, under_construction.jsp
 		-->

@@ -3,6 +3,7 @@
 	<name>bookstore-admin</name>
 	<comment></comment>
 	<projects>
+		<project>bookstore-lib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -30,6 +31,11 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>com.vaadin.integration.eclipse.widgetsetBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.maven.ide.eclipse.maven2Nature</nature>
@@ -38,5 +44,6 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+		<nature>com.vaadin.integration.eclipse.widgetsetNature</nature>
 	</natures>
 </projectDescription>
