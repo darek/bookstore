@@ -1,3 +1,4 @@
+<%@ taglib prefix="tag" uri="http://www.springframework.org/tags" %>
 <!doctype html>
 <html lang="pl" dir="ltr">
 	<head>

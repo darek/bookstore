@@ -4,28 +4,37 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="account_role")
+@Table(name = "account_role")
 public class AccountRole {
+
+	public AccountRole() {
+		this.setRole("ROLE_ANONYMOUS");
+	}
 
 	public AccountRole(String role) {
 		this.setRole(role);
 	}
-	
-	@Id
-	Integer accountId;
 
-	public Integer getAccountId() {
-		return accountId;
+	@Id
+	@GeneratedValue(generator = "role_id", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "role_id", sequenceName = "account_role_id_seq", initialValue = 1)
+	Integer roleId;
+
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
 	@Basic
@@ -39,8 +48,8 @@ public class AccountRole {
 		this.role = role;
 	}
 
-	@ManyToOne(targetEntity = Account.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id", nullable = false, insertable = false)
+	@ManyToOne(targetEntity = Account.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "accountId", nullable = true)
 	Account account;
 
 	public Account getAccount() {

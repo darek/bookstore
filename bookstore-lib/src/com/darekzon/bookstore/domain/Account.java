@@ -1,5 +1,6 @@
 package com.darekzon.bookstore.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -21,13 +22,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
-@Table(name="account")
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Account{
-	
+@Table(name = "account")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Account {
+
 	@Id
-	@GeneratedValue(generator="account_id",strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="account_id",sequenceName="account_id_seq")
+	@GeneratedValue(generator = "account_id", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "account_id", sequenceName = "account_id_seq")
 	Integer id;
 
 	public Integer getId() {
@@ -37,10 +38,10 @@ public class Account{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	@Basic
 	@NotNull
-	@Size(min=8,max=20)
+	@Size(min = 5, max = 20)
 	String username;
 
 	public String getUsername() {
@@ -50,49 +51,59 @@ public class Account{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	@Basic 
-	@Size(min=10,max=25)
+
+	@Basic
+	@Size(min = 8, max = 20)
 	String password;
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Transient
 	public String repeatedPassword;
-	
+
 	public String getRepeatedPassword() {
 		return repeatedPassword;
 	}
+
 	public void setRepeatedPassword(String repeatedPassword) {
 		this.repeatedPassword = repeatedPassword;
 	}
 
 	@Basic
-	@DateTimeFormat(iso=ISO.DATE_TIME)
-	Date addDate = new Date();;
-	
+	@DateTimeFormat(iso = ISO.DATE_TIME)
+	Date addDate = new Date();
+
 	public Date getAddDate() {
 		return addDate;
 	}
-	
+
 	public void setAddDate(Date addDate) {
 		this.addDate = addDate;
 	}
-	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="accountId",fetch=FetchType.EAGER,targetEntity=AccountRole.class)
-	List<AccountRole> accountRole;
-	
-	
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER, targetEntity = AccountRole.class)
+	List<AccountRole> accountRole = new ArrayList<AccountRole>();
+
 	public List<AccountRole> getAccountRole() {
 		return accountRole;
 	}
+
 	public void setAccountRole(List<AccountRole> accountRole) {
-		this.accountRole = accountRole;
+		for (AccountRole ar : accountRole) {
+			this.addAccountRole(ar);
+		}
+	}
+
+	public void addAccountRole(AccountRole accountRole) {
+		if (!this.accountRole.contains(accountRole)) {
+			accountRole.setAccount(this);
+			this.accountRole.add(accountRole);
+		}
 	}
 }
