@@ -9,7 +9,10 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.darekzon.bookstore.domain.Account;
 import com.darekzon.bookstore.exception.UserNotFoundException;
@@ -46,5 +49,6 @@ public class AccountDaoImpl implements AccountDao {
 		criteria.createCriteria("accountRole").add(Restrictions.in("role",roles));
 		return criteria.list();
 	}
-
+	
+	
 }

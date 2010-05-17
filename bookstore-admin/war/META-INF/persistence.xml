@@ -2,18 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="bookstorePU" transaction-type="RESOURCE_LOCAL"> 
+	<persistence-unit name="bookstorePU" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<non-jta-data-source>java:/dataSource</non-jta-data-source>
-		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-			<!-- <property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory" /> -->
-			<property name="show_sql" value="true" />
-			<property name="format_sql" value="true" />
-			<property name="use_sql_comments" value="true" />
-		</properties>
-		<!-- 		<class>com.darekzon.bookstore.Account</class>  -->
+		<jta-data-source>bookstore</jta-data-source>
+		<class>com.darekzon.bookstore.domain.Administrator</class>
+		<class>com.darekzon.bookstore.domain.Account</class>
+		<class>com.darekzon.bookstore.domain.AccountRole</class>
 	</persistence-unit>
 </persistence>

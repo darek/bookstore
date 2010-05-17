@@ -1,4 +1,4 @@
-package com.darekzon.bookstore.controller;
+package com.darekzon.bookstore.admin.controller;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,12 @@
 package com.darekzon.bookstore.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,11 +24,26 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "account")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Account {
+public class Account extends User implements UserDetails {
+
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Account(){
+		super("NONE", "NONE", false, false,false, false, new ArrayList<GrantedAuthority>());
+	}
 
 	@Id
 	@GeneratedValue(generator = "account_id", strategy = GenerationType.SEQUENCE)
@@ -106,4 +125,37 @@ public class Account {
 			this.accountRole.add(accountRole);
 		}
 	}
+
+	@Override
+	public Collection<GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> ga = new HashSet<GrantedAuthority>();
+		for (AccountRole ar : this.accountRole) {
+			ga.add(new GrantedAuthorityImpl(ar.getRole()));
+		}
+		return ga;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return this.isEnabled();
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return this.isEnabled();
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return this.isEnabled();
+	}
+
+	@Override
+	public boolean isEnabled() {
+		if (this.accountRole.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -6,8 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +55,16 @@ public class AccountServiceImpl implements AccountService {
 	@Transactional(readOnly=true)
 	public List<Account> listAccounts(List<String> roles) {
 		return accountDao.listAccounts(roles);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username)
+			throws UsernameNotFoundException, DataAccessException {
+		try {
+			return (UserDetails) accountDao.findUsername(username);
+		} catch (UserNotFoundException e) {
+			throw new UsernameNotFoundException(username);
+		}
 	}
 
 }
