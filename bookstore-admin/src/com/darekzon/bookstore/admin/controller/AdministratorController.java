@@ -22,7 +22,7 @@ public class AdministratorController {
 	@Autowired
 	AccountService accountService;
 
-	@RequestMapping(value = "/administrator")
+	@RequestMapping(value = "/settings/administrators")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("/administrator/index");
 		List<String> roles = new ArrayList<String>();
@@ -32,14 +32,14 @@ public class AdministratorController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/administrator/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/settings/administrators/add", method = RequestMethod.GET)
 	public ModelAndView add() {
 		ModelAndView mav = new ModelAndView("/administrator/add");
 		mav.addObject("administrator", new Administrator());
 		return mav;
 	}
 
-	@RequestMapping(value = "/administrator/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/settings/administrators/add", method = RequestMethod.POST)
 	public ModelAndView add(@Valid Administrator admin, BindingResult result) {
 		ModelAndView mav = new ModelAndView("administrator/add");
 		if (!admin.getPassword().equals(admin.getRepeatedPassword())) {
@@ -59,7 +59,7 @@ public class AdministratorController {
 			mav.addObject("administrator", admin);
 			return mav;
 		}
-		mav.setViewName("redirect:/administrator.html");
+		mav.setViewName("redirect:/settings/administrators.html");
 		return mav;
 	}
 

@@ -6,9 +6,7 @@
 		<sitemesh:write property='head' />
 	</head>
 	<body>
-		<nav>
-
-		</nav>
+		<%@ include file="../includes/navigation.jsp" %>
 		<sitemesh:write property='body' />
 	</body>
 </html>
