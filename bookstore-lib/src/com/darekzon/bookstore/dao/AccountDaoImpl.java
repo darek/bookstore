@@ -1,6 +1,14 @@
 package com.darekzon.bookstore.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -9,11 +17,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import com.darekzon.bookstore.domain.Account;
 import com.darekzon.bookstore.exception.UserNotFoundException;
 
@@ -24,17 +28,20 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Autowired
 	SessionFactory session;
+	
+	@PersistenceContext
+	EntityManager entityManager;
 
 	public Account findUsername(String username) throws UserNotFoundException {
-		DetachedCriteria dc = DetachedCriteria.forClass(Account.class);
-		dc.add(Property.forName("username").eq(username));
-		List users = template.findByCriteria(dc, 0, 1);
-
-		if (users.size() > 0) {
-			return (Account) users.get(0);
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Account> c = cb.createQuery(Account.class);
+		Root<Account> r = c.from(Account.class);
+		c.select(r).where(cb.equal(r.get("username"), username));
+		try{
+			return entityManager.createQuery(c).getSingleResult();
+		}catch(NoResultException nre){
+			throw new UserNotFoundException();
 		}
-
-		throw new UserNotFoundException();
 	}
 
 	public void save(Account account) {
