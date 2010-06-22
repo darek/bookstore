@@ -59,5 +59,13 @@ public class AccountRole {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof AccountRole){
+			return ((AccountRole) obj).getRole().equals(this.getRole());
+		}
+		return false;
+	}
 
 }

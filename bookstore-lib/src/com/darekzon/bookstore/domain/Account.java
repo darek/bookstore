@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -34,12 +33,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Account extends User implements UserDetails {
 
-	
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	public Account(){
 		super("NONE", "NONE", false, false,false, false, new ArrayList<GrantedAuthority>());

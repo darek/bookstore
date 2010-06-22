@@ -25,8 +25,8 @@ public class AdministratorController {
 	@RequestMapping(value = "/settings/administrators")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("/administrator/index");
-		List<String> roles = new ArrayList<String>();
-		roles.add("ROLE_ADMIN");
+		List<AccountRole> roles = new ArrayList<AccountRole>();
+		roles.add(new AccountRole("ROLE_ADMIN"));
 		List<Account> acc = accountService.listAccounts(roles);
 		mav.addObject("accounts", acc);
 		return mav;

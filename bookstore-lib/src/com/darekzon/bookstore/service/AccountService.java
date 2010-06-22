@@ -10,6 +10,6 @@ public interface AccountService extends org.springframework.security.core.userde
 	
 	public void registerAccount(Account account, List<AccountRole> ar) throws UserExistsException;
 
-	public List<Account> listAccounts(List<String> roles);
+	public List<Account> listAccounts(List<AccountRole> roles);
 	
 }
