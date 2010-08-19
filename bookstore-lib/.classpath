@@ -4,11 +4,10 @@
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/darek/.m2/repository"/>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="META-INF/" kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="eclipse.fproj.jdt.libprov.osgi/jpt.jpa">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>

@@ -68,4 +68,8 @@ public class AccountRole {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "AccountRole: "+this.role;
+	}
 }

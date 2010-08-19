@@ -36,7 +36,7 @@
 	</beans:bean>
 	
 	<http entry-point-ref="authenticationProcessingFilterEntryPoint" auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_ADMIN" />
+		<!-- <intercept-url pattern="/**" access="ROLE_ADMIN" /> -->
 		<intercept-url pattern="/login.html" filters="none" />
 		<logout logout-url="/logout.html" />
 		<anonymous granted-authority="ROLE_ANONYMOUS" />

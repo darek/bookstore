@@ -1,5 +1,6 @@
 package com.darekzon.bookstore.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.darekzon.bookstore.domain.Account;
@@ -10,6 +11,6 @@ public interface AccountService extends org.springframework.security.core.userde
 	
 	public void registerAccount(Account account, List<AccountRole> ar) throws UserExistsException;
 
-	public List<Account> listAccounts(List<AccountRole> roles);
+	public Collection<Account> listAccounts(Collection<AccountRole> roles);
 	
 }

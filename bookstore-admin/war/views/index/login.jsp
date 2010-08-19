@@ -3,13 +3,13 @@
 <%@ taglib prefix="tag" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    
+    <title><tag:message code="title.login" /></title>
 </head>
 <body>
-<c:if test="${isError eq true}">
-	<div class="error"><tag:message code="login_error" /></div>
-</c:if>
-<div class="form">
+<div class="top-login">
+	<p><tag:message code="login.text" /></p>
+</div>
+<div class="login">
     <form action="<c:url value="/j_spring_security_check.html" />" method="POST">
         <div class="input">
             <label for="login"><tag:message code="administrator.username"/></label>
@@ -20,9 +20,12 @@
             <input type="password" id="password" name="j_password"/>
         </div>
         <div class="submit">
-            <input type="submit"/>
+            <button>wyslij</button>
         </div>
     </form>
 </div>
+<c:if test="${isError eq true}">
+	<div class="error"><tag:message code="login_error" /></div>
+</c:if>
 </body>
 </html>

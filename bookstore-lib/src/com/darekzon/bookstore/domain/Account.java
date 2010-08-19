@@ -34,6 +34,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Account extends User implements UserDetails {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7407989106607054991L;
+
 	public Account(){
 		super("NONE", "NONE", false, false,false, false, new ArrayList<GrantedAuthority>());
 	}

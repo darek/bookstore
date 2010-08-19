@@ -1,5 +1,6 @@
 package com.darekzon.bookstore.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -52,7 +53,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Account> listAccounts(List<AccountRole> roles) {
+	public Collection<Account> listAccounts(Collection<AccountRole> roles) {
 		return accountDao.listAccounts(roles);
 	}
 

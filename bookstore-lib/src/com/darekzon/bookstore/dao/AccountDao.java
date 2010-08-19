@@ -1,8 +1,7 @@
 package com.darekzon.bookstore.dao;
 
-import java.util.List;
+import java.util.Collection;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import com.darekzon.bookstore.domain.Account;
 import com.darekzon.bookstore.domain.AccountRole;
 import com.darekzon.bookstore.exception.UserNotFoundException;
@@ -12,7 +11,7 @@ public interface AccountDao{
 
 	public void save(Account account);
 
-	public List<Account> listAccounts(List<AccountRole> roles);
+	public Collection<Account> listAccounts(Collection<AccountRole> roles);
 	
 	
 }

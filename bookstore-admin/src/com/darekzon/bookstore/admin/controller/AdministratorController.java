@@ -1,6 +1,7 @@
 package com.darekzon.bookstore.admin.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class AdministratorController {
 		ModelAndView mav = new ModelAndView("/administrator/index");
 		List<AccountRole> roles = new ArrayList<AccountRole>();
 		roles.add(new AccountRole("ROLE_ADMIN"));
-		List<Account> acc = accountService.listAccounts(roles);
+		Collection<Account> acc = accountService.listAccounts(roles);
 		mav.addObject("accounts", acc);
 		return mav;
 	}
@@ -43,8 +44,7 @@ public class AdministratorController {
 	public ModelAndView add(@Valid Administrator admin, BindingResult result) {
 		ModelAndView mav = new ModelAndView("administrator/add");
 		if (!admin.getPassword().equals(admin.getRepeatedPassword())) {
-			result.addError(new FieldError("administrator", "repeatedPassword",
-					"notEqual"));
+			result.addError(new FieldError("administrator", "repeatedPassword","notEqual"));
 		}
 		if (result.hasErrors()) {
 			mav.addObject("administrator", admin);
