@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/war"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module archiveName="bookstore-lib.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/bookstore-lib/bookstore-lib">
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/bookstore-lib/bookstore-lib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/bookstore-admin/build/classes"/>

@@ -9,12 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.darekzon.bookstore.domain.Account;
 import com.darekzon.bookstore.domain.AccountRole;
@@ -22,11 +17,6 @@ import com.darekzon.bookstore.exception.UserNotFoundException;
 
 public class AccountDaoImpl implements AccountDao {
 
-	@Autowired
-	HibernateTemplate template;
-
-	@Autowired
-	SessionFactory session;
 	
 	@PersistenceContext
 	EntityManager entityManager;
@@ -44,7 +34,7 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	public void save(Account account) {
-		template.save(account);
+		entityManager.persist(account);
 
 	}
 

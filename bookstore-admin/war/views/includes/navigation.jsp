@@ -1,4 +1,6 @@
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="tag" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%
 	String moduleName = (String) pageContext.getAttribute("moduleName",PageContext.REQUEST_SCOPE);
 	String pageName = (String) pageContext.getAttribute("pageName",PageContext.REQUEST_SCOPE);
@@ -19,12 +21,12 @@
 			<ul>
 				<li
 					class="<% if(moduleName=="categories"){ out.print("active"); } %>">
-					<a href="<%= request.getContextPath() %>/catalog/categories.html">
+					<a href="<%= request.getContextPath() %>/category.html">
 						<tag:message code="menu.categories" />
 					</a>
 				</li>
 				<li>
-					<a href="<%= request.getContextPath() %>/catalog/books.html">
+					<a href="<%= request.getContextPath() %>/book.html">
 						<tag:message code="menu.books" />
 					</a>
 				</li>

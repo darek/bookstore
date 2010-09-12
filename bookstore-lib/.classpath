@@ -7,8 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="META-INF/" kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="eclipse.fproj.jdt.libprov.osgi/jpt.jpa">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry exported="true" kind="con" path="eclipse.fproj.jdt.libprov.osgi/jpt.jpa">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
