@@ -2,16 +2,13 @@ package com.darekzon.bookstore.admin.controller;
 
 import javax.validation.Valid;
 
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.darekzon.bookstore.domain.Book;
 import com.darekzon.bookstore.service.CatalogService;
 
@@ -40,9 +37,11 @@ public class BookController {
 	public ModelAndView add(@Valid Book book, BindingResult result) {
 		ModelAndView mav = new ModelAndView("redirect:/book.html");
 		if(!result.hasErrors()){
+			System.out.println("ins");
 			cService.insertBook(book);
 			return mav;
 		}
+		System.out.println(result.getAllErrors().get(0));
 		mav.setViewName("/book/add");
 		mav.addObject("categories",cService.getTopCategories());
 		mav.addObject("book",book);
@@ -72,7 +71,7 @@ public class BookController {
 		System.out.println("sssss");
 		mav.setViewName("/book/add");
 		mav.addObject("book",book);
-		//mav.addObject("categories",cService.getTopCategories());
+		mav.addObject("categories",cService.getTopCategories());
 		return mav;
 		
 	}

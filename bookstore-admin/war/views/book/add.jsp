@@ -25,6 +25,27 @@
 			<form:input path="originalTitle" />
 			<form:errors path="originalTitle" />
 		</li>
+		
+		<li>
+			<form:label path="categoryId"><tag:message code="book.category" /></form:label> 
+			<form:select path="categoryId">
+				<c:forEach items="${categories}" var="category">
+					<form:option value="${category.id}">${category.name}</form:option>
+					<c:if test="${not empty category.childrens}">
+						<c:forEach items="${category.childrens}" var="child">
+							<form:option value="${child.id}"> - ${child.name}</form:option>
+							<c:if test="${not empty child.childrens}">
+								<c:forEach items="${child.childrens}" var="subChild">
+									<form:option value="${subChild.id}">  |-- ${subChild.name}</form:option>
+								</c:forEach>
+							</c:if>
+						</c:forEach>
+					</c:if>
+				</c:forEach>
+				
+			</form:select>
+			<form:errors path="categoryId" />
+		</li>
 		<li>
 			<form:label path="price"><tag:message code="book.price" /></form:label> 
 			<form:input path="price" />

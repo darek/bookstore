@@ -18,5 +18,9 @@ public interface CatalogService{
 	public Book getBook(Long id);
 	
 	public void updateBook(Book b);
+
+	public Collection<Book> search(String phrase);
+
+	public void updateCategory(Category category);
 		
 }

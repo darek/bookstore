@@ -90,8 +90,15 @@ public class Category {
 		this.childrens = childrens;
 	}
 	
-	
-	
-	
+	@OneToMany(fetch=FetchType.LAZY,targetEntity=Book.class,mappedBy="categoryId")
+	private Collection<Book> books;
+
+	public Collection<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Collection<Book> books) {
+		this.books = books;
+	}
 	
 }

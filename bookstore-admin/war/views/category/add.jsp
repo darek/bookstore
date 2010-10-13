@@ -20,19 +20,8 @@
 			<form:errors path="name" />
 		</li>
 		<li>
-			<form:label path="parentId"><tag:message code="category.parent" /></form:label> 
-			<form:select path="parentId">
-				<form:option value="0"><tag:message code="category.main_category" /></form:option>
-				<c:forEach items="${categories}" var="category">
-					<form:option value="${category.id}">${category.name}</form:option>
-					<c:if test="${not empty category.childrens}">
-						<c:forEach items="${category.childrens}" var="child">
-							<form:option value="${child.id}"> - ${child.name}</form:option>
-						</c:forEach>
-					</c:if>
-				</c:forEach>
-				
-			</form:select>
+			<form:label path="parentId"><tag:message code="category.parent" /></form:label>
+			<t:categoriesselect categories="${categories}" level="0" category="${category}" /> 
 			<form:errors path="parentId" />
 		</li>
 		<li class="submit">

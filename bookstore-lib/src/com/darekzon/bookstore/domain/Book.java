@@ -1,34 +1,28 @@
 package com.darekzon.bookstore.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-
-import org.hibernate.annotations.TypeDef;
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.RevisionTimestamp;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
 
 /**
  * @author darek
@@ -91,6 +85,7 @@ public class Book {
 
 	@NotEmpty
 	@Column(length=2,nullable=false)
+	@Field(index=Index.UN_TOKENIZED,store=Store.YES)
 	private String language = null;
 	
 	
@@ -154,5 +149,32 @@ public class Book {
 	public void setIsbn10(String isbn10) {
 		this.isbn10 = isbn10;
 	}
+	
+	@Basic
+	@NotBlank
+	@Column(insertable=false,updatable=false)
+	private Integer categoryId;
+	
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	@IndexedEmbedded(depth=1,targetElement=Category.class)
+	@ManyToOne(targetEntity=Category.class,fetch=FetchType.EAGER)
+	@JoinColumn(name="categoryId")
+	private Category category;
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
 
 }
