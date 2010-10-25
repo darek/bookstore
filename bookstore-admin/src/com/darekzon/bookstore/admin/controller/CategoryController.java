@@ -61,7 +61,7 @@ public class CategoryController {
 	@RequestMapping(value = "/category/edit/{id}", method = RequestMethod.POST)
 	public ModelAndView edit(@PathVariable("id") Integer id,@Valid Category category, BindingResult result){
 		ModelAndView mav = new ModelAndView("redirect:/category");
-		if(category.getParentId().equals(id)){
+		if(category.getParentId()==id){
 			result.addError(new FieldError("category","parent_id","Cannot set parent to itself"));
 		}
 		if(!result.hasErrors()){

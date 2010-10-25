@@ -9,3 +9,15 @@
 <a href="<%= request.getContextPath() %>/book/add.html" class="single-button right">
 	<tag:message code="option.add" />
 </a>
+
+<c:if test="${not empty books}">
+	<ol>
+	<c:forEach items="${books}" var="book">
+		<li>
+			<a href="<%= request.getContextPath() %>/book/details/${book.id}.html">
+				${book.title}
+			</a>
+		</li>
+	</c:forEach>
+	</ol>
+</c:if>

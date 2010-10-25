@@ -25,9 +25,9 @@
 			<property name="hibernate.ejb.event.post-collection-recreate" value="org.hibernate.envers.event.AuditEventListener" />
 			<!-- koniec konfiguracji envers -->
 
-			<!-- konfiguracja hibernate search -->
+			<!-- konfiguracja hibernate search
 			<property name="hibernate.search.default.directory_provider" value="org.hibernate.search.store.FSDirectoryProvider" />
-			<property name="hibernate.search.default.indexBase" value="/var/tmp/lucene/indexes" />
+			<property name="hibernate.search.default.indexBase" value="/var/tmp/lucene/indexes" /> -->
 			<!-- koniec konfiguracji hibernate search -->
 
 

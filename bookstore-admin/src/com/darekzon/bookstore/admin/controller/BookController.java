@@ -22,6 +22,15 @@ public class BookController {
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("/book/index");
 		
+		mav.addObject("books",cService.listBooks());
+		return mav;
+	}
+	
+	@RequestMapping(value="/book/details/{id}", method=RequestMethod.GET)
+	public ModelAndView details(@PathVariable("id") Long id){
+		ModelAndView mav = new ModelAndView("/book/add");
+		mav.addObject(cService.getBookDetails(id));
+		
 		return mav;
 	}
 
@@ -61,14 +70,13 @@ public class BookController {
 	}
 	
 	@RequestMapping(value = "/book/edit/{id}",method = RequestMethod.POST)
-	public ModelAndView edit(@Valid Book book, BindingResult result) {
+	public ModelAndView edit(@PathVariable(value="id") Long id, @Valid Book book, BindingResult result) {
 		ModelAndView mav = new ModelAndView("redirect:/book.html");
 		if(!result.hasErrors()){
-			book.setId(100l);
+			book.setId(id);
 			cService.updateBook(book);
 			return mav;
 		}
-		System.out.println("sssss");
 		mav.setViewName("/book/add");
 		mav.addObject("book",book);
 		mav.addObject("categories",cService.getTopCategories());

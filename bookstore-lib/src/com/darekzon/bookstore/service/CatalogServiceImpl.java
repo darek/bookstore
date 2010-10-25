@@ -9,8 +9,10 @@ import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.util.Version;
 import org.hibernate.search.jpa.FullTextEntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import com.darekzon.bookstore.dao.BookDao;
 import com.darekzon.bookstore.domain.Book;
 import com.darekzon.bookstore.domain.Category;
 
@@ -21,6 +23,9 @@ public class CatalogServiceImpl implements CatalogService{
 	@PersistenceContext
 	EntityManager entityManager;
 	
+	@Autowired
+	BookDao bookDao;
+	
 	@Override
 	@Transactional(readOnly=true)
 	public Collection<Category> getTopCategories(){
@@ -29,7 +34,8 @@ public class CatalogServiceImpl implements CatalogService{
 	
 	@Override
 	public void saveCategory(Category category){
-		entityManager.persist(category);
+		System.out.println(category.getParentId());
+		//entityManager.persist(category);
 	}
 	
 	@Override
@@ -45,12 +51,7 @@ public class CatalogServiceImpl implements CatalogService{
 
 	@Override
 	public void insertBook(Book book) {
-		System.out.println("Inserting book");
-		Category cat = entityManager.find(Category.class, book.getCategoryId());
-		book.setCategory(cat);
-		book.setCategoryId(null);
 		entityManager.persist(book);
-		System.out.println("End: Inserting book");
 	}
 
 	@Override
@@ -61,6 +62,9 @@ public class CatalogServiceImpl implements CatalogService{
 
 	@Override
 	public void updateBook(Book b) {
+		if(entityManager.find(Book.class, b.getId())==null){
+			throw new IllegalArgumentException("Unknown book id: " + b.getId());
+		}
 		entityManager.merge(b);
 		
 	}
@@ -91,7 +95,17 @@ public class CatalogServiceImpl implements CatalogService{
 		return resultList;
 		
 	}
-	
+
+	@Override
+	@Transactional(readOnly=true)
+	public Collection<Book> listBooks() {
+		return bookDao.list();
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public Book getBookDetails(Long id){
+		return bookDao.getDetails(id);
+	}
 	
 		
 }

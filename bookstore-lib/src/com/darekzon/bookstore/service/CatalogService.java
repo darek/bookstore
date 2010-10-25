@@ -22,5 +22,9 @@ public interface CatalogService{
 	public Collection<Book> search(String phrase);
 
 	public void updateCategory(Category category);
+	
+	public Collection<Book> listBooks();
+	
+	public Book getBookDetails(Long id);
 		
 }

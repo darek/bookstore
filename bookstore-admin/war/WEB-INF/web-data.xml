@@ -45,6 +45,8 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean class="com.darekzon.bookstore.dao.AccountDaoImpl" />
+	<bean class="com.darekzon.bookstore.dao.BookDaoImpl" />
+	
 	<bean id="userService" class="com.darekzon.bookstore.service.AccountServiceImpl" />
 	<bean id="catalogService" class="com.darekzon.bookstore.service.CatalogServiceImpl" />
 
