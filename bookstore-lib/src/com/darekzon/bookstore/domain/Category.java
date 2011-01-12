@@ -79,7 +79,7 @@ public class Category {
 		this.parent = parent;
 	}
 	
-	@OneToMany(fetch=FetchType.EAGER,mappedBy="parentId",orphanRemoval=true,targetEntity=Category.class)
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="parentId",orphanRemoval=true,targetEntity=Category.class)
 	private Collection<Category> childrens;
 
 	public Collection<Category> getChildrens() {

@@ -161,7 +161,7 @@ public class Book {
 	}
 
 	@IndexedEmbedded(depth = 1, targetElement = Category.class)
-	@ManyToOne(targetEntity = Category.class, fetch = FetchType.EAGER)
+	@ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoryId")
 	private Category category;
 
