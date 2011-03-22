@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +23,16 @@
     h2 { font-size: 1.5em; color: #020302; }
     h3 { text-align: center; color: #020302; }
     a { color: #020302; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .description { font-size: 1.2em; margin-bottom: 20px; margin-top: 30px; font-style: italic;}
+      .description a, p a { color: #0D8C9B; }
+      .description a:hover, p a:hover{color:#558988;text-decoration:none;}
     .download { float: right; }
     pre { background: #000; color: #fff; padding: 15px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
+    
+    ul li ul{padding-left:5px; font-weight:bold;font-size:0.8em;}
+      ul li ul li{font-weight:normal;margin-left:25px;font-size:1.2em;}
   </style>
 </head>
 
@@ -46,15 +52,43 @@
       <span class="small">by <a href="http://github.com/darek">darek</a></span></h1>
 
     <div class="description">
-      księgarnia internetowa oparta o spring framework 3
+
+
+      <p>
+  
+  Projekt składać się będzie z dwóch modułów, panelu administracyjnego dostępnego 
+  tylko i wyłącznie dla użytkowników z poziomem dostępu ADMIN oraz części otwartej 
+  do której dostęp będą mieli wszyscy internauci.
+   (za wyjątkiem obszarów które będą wymagały zalogowania się z poziomem dostępu CLIENT). 
+</p>
+<p>Księgarnia internetowa zostanie napisana w języku Java w oparciu o bliblioteki:
+    </p>
+
+
+      <ul>
+          <li>
+                <a href="http://www.springsource.org/" title="Spring Framework" target="_blank">Spring Framework</a> w wersji 3
+                <ul>w tym:
+                      <li>Spring Security</li>  
+               </ul>
+          </li>
+          <li>
+                <a href="http://www.hibernate.org/" title="Hibernate" target="_blank">Hibernate</a> w wersji 3
+                <ul>w tym:
+                      <li>Hibernate Search</li>
+                      <li>Hibernate Validator</li>  
+               </ul>
+          </li>
+          <li><a href="http://www.opensymphony.com/sitemesh/" title="Sitemesh" target="_blank">Sitemesh</a> w wersji 3</li>
+      </ul>
     </div>
 
     <h2>Autor</h2>
-<p>darek (http://darekzon.com)
+<p>darek (<a href="http://darekzon.com" target="_blank">http://darekzon.com</a>)
 <br/>
 <br/>      </p>
 <h2>Kontakt</h2>
-<p>darek (http://darekzon.com)</p>
+<p>darek (<a href="http://darekzon.com/kontakt" target="_blank">http://darekzon.com/kontakt</a>)</p>
 
 
     <h2>Pobieranie</h2>
