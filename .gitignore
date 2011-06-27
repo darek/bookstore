@@ -1,0 +1,8 @@
+.DS_Store
+.classpath
+.externalToolBuilders
+.project
+.settings
+*/build/*
+*/target/*
+.apt_generated
