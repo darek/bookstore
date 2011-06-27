@@ -74,20 +74,22 @@ public class CatalogServiceImpl implements CatalogService{
 		FullTextEntityManager fullTextEntityManager = 
 		    org.hibernate.search.jpa.Search.getFullTextEntityManager(entityManager);
 
-		// tworzenie natywnego zapytania Lucene
+		// create native Lucene query
 		String[] fields = new String[]{"title", "subtitle", "authors.name", "publicationDate"};
 		MultiFieldQueryParser parser = new MultiFieldQueryParser(Version.LUCENE_29,fields, new SimpleAnalyzer());
 		org.apache.lucene.search.Query query = null;
 		try {
 			query = parser.parse( phrase );
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		// opakowanie zapytania Lucene w zapytanie Javax Persistence
+		// wrap Lucene query in a javax.persistence.Query
 		javax.persistence.Query persistenceQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
 
-		// Wykonujemy zapytanie
+		// execute search
+		
 		@SuppressWarnings("unchecked")
 		List<Book> resultList = (List<Book>) persistenceQuery.getResultList();
 		return resultList;

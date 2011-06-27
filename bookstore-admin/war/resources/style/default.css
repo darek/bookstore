@@ -1,0 +1,22 @@
+body{width:1000px;margin:0 auto;}
+
+
+nav{width:100%;overflow: hidden;margin:10px 0px 30px;display:block;}
+	nav ul li{float:left;padding:3px 4px;}
+		nav ul li ul{position:absolute;display:none;}
+		nav ul li.active ul{display:block;}
+	nav ul li.logout{float:right;}
+	
+	
+.right{float:right;}
+
+
+/* jquery ui */
+.ui-widget{font-size:0.8em;}
+
+
+
+.form{margin:10px auto;}
+	.form ol li{clear:both;margin:20px 0px;}
+		.form ol li label{clear:both;width:100%;display:block;font-size:20px;color:#555555;}
+		.form ol li input[type="text"],.form ol li textarea{width:70%;padding:3px 2px;font-size:14px;}

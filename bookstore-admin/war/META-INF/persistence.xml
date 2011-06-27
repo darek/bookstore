@@ -1,0 +1,36 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="bookstorePU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>bookstore</jta-data-source>
+		<class>com.darekzon.bookstore.domain.Administrator</class>
+		<class>com.darekzon.bookstore.domain.Account</class>
+		<class>com.darekzon.bookstore.domain.AccountRole</class>
+		<class>com.darekzon.bookstore.domain.Category</class>
+		<class>com.darekzon.bookstore.domain.Book</class>
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+
+			<!-- konfiguracja envers -->
+			<property name="hibernate.ejb.event.post-insert" value="org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener" />
+			<property name="hibernate.ejb.event.post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener" />
+			<property name="hibernate.ejb.event.post-delete" value="org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener" />
+			<property name="hibernate.ejb.event.pre-collection-update" value="org.hibernate.envers.event.AuditEventListener" />
+			<property name="hibernate.ejb.event.pre-collection-remove" value="org.hibernate.envers.event.AuditEventListener" />
+			<property name="hibernate.ejb.event.post-collection-recreate" value="org.hibernate.envers.event.AuditEventListener" />
+			<!-- koniec konfiguracji envers -->
+
+			<!-- konfiguracja hibernate search
+			<property name="hibernate.search.default.directory_provider" value="org.hibernate.search.store.FSDirectoryProvider" />
+			<property name="hibernate.search.default.indexBase" value="/var/tmp/lucene/indexes" /> -->
+			<!-- koniec konfiguracji hibernate search -->
+
+
+		</properties>
+	</persistence-unit>
+</persistence>
